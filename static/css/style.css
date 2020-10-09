@@ -1,0 +1,43 @@
+/* Global Styling */
+body {
+    background-color: #F7F7F7;
+}
+
+/* Navbar */
+#navbar {
+    background-color: #8B9DC3;
+    padding: 5px 16px;
+}
+
+#navbar-title {
+    color: #ffffff;
+}
+
+/* Card */
+#card {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Containers */
+#content-container {
+    flex: 1;
+    margin-top: 1.5rem;
+}
+
+#style-container {
+    flex: 1;
+    margin-top: 1.5rem;
+}
+
+#transfer-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+#back-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}

@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar navbar-light">
+        <a href="{{ url_for('index') }}">
+            <span id="navbar-title" class="navbar-brand mb-0 h1">Neural Style Transfer</span>
+        </a>
+    </nav>
+
+    <!-- Card which contains the core of the website -->
+    <div id="card" class="container">
+
+        <!-- Content Image Container -->
+        <div id="content-container" class="container">
+            <h6>Content Image</h6>
+            <form action="/img_upload/content" method="post" enctype="multipart/form-data">
+                <div class="input-group mb-3">
+                    <input type="file" name="content_img" id="cont_img" required>
+                    <input class="btn btn-sm" type="submit" value="Upload" style="background-color: #8B9DC3; color: white">
+                </div>    
+            </form>
+            <!-- After Content image has been uploaded, it is rendered -->
+            {% if render_image %}
+                {% if render_image['content_image'] %}
+                    <img class="img-fluid rounded" src="..\{{ paths['content_image'] }}" alt="Unable to load content Image">
+                {% endif %}
+            {% endif %}
+        </div>  
+        
+        <!-- Style Image Container -->
+        <div id="style-container" class="container">
+            <h6>Style Image</h6>
+            <form action="/img_upload/style" method="post" enctype="multipart/form-data">
+                <div class="input-group mb-3">
+                    <input type="file" name="style_img" id="style_img" required>
+                    <input class="btn btn-sm" type="submit" value="Upload" style="background-color: #8B9DC3; color: white">
+                </div>
+            </form>
+            <!-- After Style image has been uploaded, it is rendered -->
+            {% if render_image %}
+                {% if render_image['style_image'] %}
+                    <img class="img-fluid rounded" src="..\{{ paths['style_image'] }}" alt="Unable to load style Image">
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Stylized Image Container -->
+    <div class="container">
+        <div id="transfer-container">
+
+            <!-- Tranform Style Button -->
+            <form id="transfer-form" action="/result" method="post">
+                <input class="btn btn-outline-secondary" type="submit" value="Transfer Style">
+            </form>
+            {% if render_image %}
+                {% if render_image['stylized_image'] %}
+                    <style>
+                        #transfer-container {
+                            flex-direction: column;
+                        }
+                        #transfer-form {
+                            display: none;
+                        }
+                    </style>
+                    <h6 style="text-align: center;">Stylized Image</h6>
+                    <img class="img-fluid rounded" src="..\{{ paths['stylized_image'] }}" alt="Unable to load stylized Image">
+                    <div id="back-container">
+                        <a href="{{ url_for('index') }}"><button class="btn btn-outline-secondary">Back</button></a>
+                    </div>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
